@@ -1,0 +1,4 @@
+// PERSON 4: privacy controls, JSON export, and demo reset.
+document.getElementById('privacyBtn').onclick=()=>{data.privacy=!data.privacy;save();render();msg(document.getElementById('privacyMessage'),'Privacy mode is now '+(data.privacy?'ON. Owner names are hidden.':'OFF. Owner names are visible.'),true)};
+document.getElementById('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='blockpass-backup.json';a.click();URL.revokeObjectURL(a.href)};
+document.getElementById('resetBtn').onclick=()=>{if(confirm('Reset all BlockPass demo data? This cannot be undone.')){data=freshData();save();render();msg(document.getElementById('privacyMessage'),'Demo data has been reset.',true)}};
